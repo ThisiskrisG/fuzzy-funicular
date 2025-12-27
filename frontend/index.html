@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IVP Launch Page</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: #f5f7fb;
+      color: #1d2433;
+    }
+    header {
+      background: #111827;
+      color: #f9fafb;
+      padding: 48px 24px 32px;
+    }
+    header h1 {
+      margin: 0 0 12px;
+      font-size: 2.4rem;
+    }
+    header p {
+      margin: 0;
+      max-width: 640px;
+      line-height: 1.6;
+    }
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 32px 24px 56px;
+      display: grid;
+      gap: 24px;
+    }
+    section {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+    }
+    h2 {
+      margin-top: 0;
+      color: #111827;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .project-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 16px;
+      background: #f9fafb;
+    }
+    code {
+      display: block;
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      white-space: pre-wrap;
+    }
+    .muted {
+      color: #6b7280;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>IVP Project Launch Studio</h1>
+    <p>
+      Streamline every new project with a ready-to-use API. Create, list, and
+      manage initiatives in seconds, then plug the API key into your workflows.
+    </p>
+  </header>
+  <main>
+    <section>
+      <h2>Quickstart with the IVP API</h2>
+      <p class="muted" id="quickstart-title">Loading API guide...</p>
+      <ul id="quickstart-steps"></ul>
+      <code id="quickstart-example"></code>
+    </section>
+
+    <section>
+      <h2>Active Projects</h2>
+      <p class="muted">Created through the API and ready for collaboration.</p>
+      <div class="project-grid" id="project-grid"></div>
+    </section>
+
+    <section>
+      <h2>How to Use the API</h2>
+      <p>
+        Send a JSON payload to <strong>/api/projects</strong> to spin up a new
+        workspace instantly.
+      </p>
+      <code>
+curl -X POST http://localhost:5000/api/projects \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Growth Metrics", "description": "Unified analytics and KPI tracking."}'
+      </code>
+    </section>
+  </main>
+  <script>
+    const quickstartTitle = document.getElementById("quickstart-title");
+    const quickstartSteps = document.getElementById("quickstart-steps");
+    const quickstartExample = document.getElementById("quickstart-example");
+    const projectGrid = document.getElementById("project-grid");
+
+    function renderProjects(projects) {
+      projectGrid.innerHTML = "";
+      projects.forEach((project) => {
+        const card = document.createElement("div");
+        card.className = "project-card";
+        card.innerHTML = `
+          <h3>${project.name}</h3>
+          <p class="muted">${project.description}</p>
+          <p><strong>Status:</strong> ${project.status}</p>
+          <p><strong>API Key:</strong> ${project.api_key}</p>
+          <p class="muted">Created ${new Date(project.created_at).toLocaleString()}</p>
+        `;
+        projectGrid.appendChild(card);
+      });
+    }
+
+    async function loadData() {
+      try {
+        const [quickstartResponse, projectsResponse] = await Promise.all([
+          fetch("/api/quickstart"),
+          fetch("/api/projects"),
+        ]);
+        const quickstart = await quickstartResponse.json();
+        const projects = await projectsResponse.json();
+
+        quickstartTitle.textContent = quickstart.title;
+        quickstartSteps.innerHTML = quickstart.steps
+          .map((step) => `<li>${step}</li>`)
+          .join("");
+        quickstartExample.textContent = `${quickstart.examples.create_project.method} ${quickstart.examples.create_project.url}\n\n${JSON.stringify(
+          quickstart.examples.create_project.body,
+          null,
+          2
+        )}`;
+
+        renderProjects(projects.projects);
+      } catch (error) {
+        quickstartTitle.textContent = "Unable to load API guide.";
+        quickstartExample.textContent = "Start the backend to fetch API data.";
+      }
+    }
+
+    loadData();
+  </script>
+</body>
+</html>
