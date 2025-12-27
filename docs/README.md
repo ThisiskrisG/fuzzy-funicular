@@ -3,7 +3,7 @@
 This is the starter pack for IVP (Internet Visionary Provider). It includes:
 
 - Frontend: `index.html`
-- Backend: Flask app
+- Backend: Node/Express API
 - Q&A Plugin: `whisper_bot.js`
 - Deploy scaffold
 - Certs placeholder

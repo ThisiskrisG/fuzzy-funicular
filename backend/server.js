@@ -1,17 +1,8 @@
 const express = require('express');
-const fs = require('fs');
-const path = require('path');
 const { db, initDb } = require('./db');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
-const ensureDataDir = () => {
-  const dataDir = path.join(__dirname, 'data');
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true });
-  }
-};
 
 const run = (sql, params = []) =>
   new Promise((resolve, reject) => {
@@ -46,7 +37,6 @@ const get = (sql, params = []) =>
     });
   });
 
-ensureDataDir();
 initDb();
 
 app.use(express.json());
