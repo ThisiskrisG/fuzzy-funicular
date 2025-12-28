@@ -104,13 +104,13 @@ Nila lights a lantern not for the city alone, but for the horizon below.
 
 ## First Sequence of Events (Lucera)
 
-1. **Opening Image:** Dawn spreads over Lucera’s glass bridges as lanterns flicker in the morning wind.
-2. **Daily Rite:** Nila completes the morning lighting run, reciting the lamplighter’s vows.
-3. **Small Glitch:** One lantern sputters with a faint echo of someone else’s memory-starlight.
-4. **Warning Whisper:** Yara, the memory-weaver, notes the light is “fraying” in an unusual pattern.
-5. **Public Disruption:** A chain of lanterns on the east span goes dark, causing a brief bridge closure.
-6. **Council Edict:** The council orders all lamplighters to keep routes close to the city rim.
-7. **Inciting Clue:** Nila finds her mentor’s seal etched into the darkened glass.
-8. **Private Choice:** She hides the seal from the council, keeping it as proof.
-9. **Ally Offer:** Orin offers a wind-sail to the lower ruins, claiming to have seen strange lights below.
-10. **Commitment:** Nila agrees to meet Orin at dusk, stepping toward the forbidden edge.
+1. Dawn spreads over Lucera’s glass bridges as lanterns flicker in the morning wind.
+2. Nila completes the morning lighting run, reciting the lamplighter’s vows.
+3. One lantern sputters with a faint echo of someone else’s memory-starlight.
+4. Yara, the memory-weaver, notes the light is “fraying” in an unusual pattern.
+5. A chain of lanterns on the east span goes dark, causing a brief bridge closure.
+6. The council orders all lamplighters to keep routes close to the city rim.
+7. Nila finds her mentor’s seal etched into the darkened glass.
+8. She hides the seal from the council, keeping it as proof.
+9. Orin offers a wind-sail to the lower ruins, claiming to have seen strange lights below.
+10. Nila agrees to meet Orin at dusk, stepping toward the forbidden edge.
